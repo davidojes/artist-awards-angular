@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "artist-awards-angular"
+    }
+  },
+  "defaultProject": "artist-awards-angular",
+  "cli": {
+    "analytics": false
+  }
 }
