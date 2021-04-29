@@ -1,7 +1,7 @@
 <div class="container">
-    <h2 class="title is-4">Log in</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <p class="has-text-danger" *ngIf="invalidLogin">{{errorMessage}}</p>
+    <h2 class="title is-4">Get voting access</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <p class="has-text-danger" *ngIf="invalidRegistration">{{errorMessage}}</p>
         <br>
         <div class="columns">
             <!-- column 1 -->
@@ -9,7 +9,13 @@
                 <div class="field">
                     <div class="control">
                         <!-- <label for="name">Name</label> -->
-                        <input id="name" class="input" type="email" placeholder="Email Address"
+                        <input id="name" class="input" type="text" placeholder="Name" formControlName="name" />
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <!-- <label for="name">Name</label> -->
+                        <input id="email" class="input" type="email" placeholder="Email Address"
                             formControlName="email" />
                     </div>
                 </div>
@@ -23,9 +29,10 @@
                 <div class="field">
                     <div class="control">
                         <!-- <label for="name">Name</label> -->
-                        <button class="button is-primary" type="submit">Login</button>
+                        <button class="button is-primary" type="submit">Sign up</button>
                     </div>
                 </div>
+
             </div>
             <!-- end of column 1 -->
         </div>
