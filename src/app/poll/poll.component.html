@@ -1,0 +1,16 @@
+<div class="container" *ngIf="poll">
+    <h2 class="title has-text-centered mb-6">{{poll.title}} ({{poll.status.name}})</h2>
+    <div class="columns is-multiline">
+        <div class="column is-one-quarter" *ngFor="let pollOption of poll.pollOptions">
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title is-centered has-text-weight-normal">{{pollOption.content}}</p>
+                </header>
+                <footer class="card-footer has-background-primary">
+                    <a href="#" class="card-footer-item has-text-white">Vote</a>
+                </footer>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>
