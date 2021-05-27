@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from "@angular/router";
 import { NgForm } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {UserService} from '../user.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   invalidLogin = false;
   errorMessage = "";
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient, private userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -36,6 +37,11 @@ export class LoginComponent implements OnInit {
       withCredentials: true
     })
     .subscribe();
+    var userId = this.userService.getUserId();
+    console.log(userId);
+    this.userService.setUserLoggedIn();
+
+    // console.log(userId);
     // .subscribe(response => {
     //   const token = (<any>response).token;
     //   localStorage.setItem("authToken", token);
