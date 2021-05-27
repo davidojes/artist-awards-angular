@@ -32,18 +32,21 @@ export class LoginComponent implements OnInit {
     this.http.post("https://localhost:44399/api/auth/login", credentials, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
-      })
-    }).subscribe(response => {
-      const token = (<any>response).token;
-      localStorage.setItem("authToken", token);
-      this.invalidLogin = false;
-      console.log(localStorage.getItem("authToken"));
-      // this.router.navigate(["/"]);
-    }, err => {
-      this.invalidLogin = true;
-      this.errorMessage = err.error.message;
-      // console.log(err.error.message);
-    });
+      }),
+      withCredentials: true
+    })
+    .subscribe();
+    // .subscribe(response => {
+    //   const token = (<any>response).token;
+    //   localStorage.setItem("authToken", token);
+    //   this.invalidLogin = false;
+    //   console.log(localStorage.getItem("authToken"));
+    //   // this.router.navigate(["/"]);
+    // }, err => {
+    //   this.invalidLogin = true;
+    //   this.errorMessage = err.error.message;
+    //   // console.log(err.error.message);
+    // });
   }
 
 }
