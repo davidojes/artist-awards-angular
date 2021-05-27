@@ -19,6 +19,11 @@ export class UserService {
     return userId;
   }
 
+  getUserName() {
+    var userName = this.getUserProperty("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name");
+    return userName;
+  }
+
 
   /**
    * 
@@ -33,7 +38,7 @@ export class UserService {
 
   getUserProperty(propertyName) {
     var decodedAccessToken = this.getDecodedAccessToken();
-    var property = decodedAccessToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid"];
+    var property = decodedAccessToken[propertyName];
     return property;
   }
 
