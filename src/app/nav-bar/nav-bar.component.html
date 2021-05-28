@@ -6,13 +6,7 @@
       <span class="is-size-3">Artist Awards</span>
     </a>
 
-    <a
-      role="button"
-      class="navbar-burger"
-      aria-label="menu"
-      aria-expanded="false"
-      data-target="navbar"
-    >
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -21,14 +15,25 @@
 
   <div id="navbar" class="navbar-menu">
     <div class="navbar-end">
-      <div class="navbar-item">
+
+      <div *ngIf="userLoggedIn; else userNotLoggedIn" id="userLoggedIn" class="navbar-item">
         <div class="buttons">
-          <a routerLink="login" class="button is-light"> Login </a>
-          <a routerLink="register" class="button is-primary">
-            <strong>Sign Up</strong>
-          </a>
+          <div class="navbar-item is-size-4 has-text-primary-dark">Logged in as {{userName}}</div>
+          <!-- <a href="#" class="button is-light"> Logout </a> -->
         </div>
       </div>
+      <ng-template #userNotLoggedIn>
+        <div class="navbar-item">
+          <div class="buttons">
+            <a routerLink="login" class="button is-light"> Login </a>
+            <a routerLink="register" class="button is-primary">
+              <strong>Sign Up</strong>
+            </a>
+          </div>
+        </div>
+      </ng-template>
+
+
     </div>
   </div>
 </nav>
