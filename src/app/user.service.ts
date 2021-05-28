@@ -11,16 +11,19 @@ export class UserService {
   constructor() { }
 
   getUserLoggedIn() {
+    var tokenExpired = this.isTokenExpired();
+    if (tokenExpired) this.setUserLoggedIn(false);
+    else this.setUserLoggedIn(true);
     return this.userLoggedIn;
   }
 
   getUserId() {
-    var userId = this.getUserProperty("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid");
+    var userId = this.getTokenProperty("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/sid");
     return userId;
   }
 
   getUserName() {
-    var userName = this.getUserProperty("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name");
+    var userName = this.getTokenProperty("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name");
     return userName;
   }
 
@@ -31,12 +34,21 @@ export class UserService {
    * 
    */
 
+  isTokenExpired() {
+    var expiryDate = this.getTokenProperty("exp");
+    var currentDate = Math.round(Date.now() / 1000)
+    // console.log(`current date: ${currentDate}\n expiry date: ${expiryDate}`)
+
+    if(currentDate > expiryDate)  return true;
+    else return false;
+  }
+
    setUserLoggedIn(value = null) {
     if (value != null) this.userLoggedIn = value;
     else this.userLoggedIn = !this.userLoggedIn;
   }
 
-  getUserProperty(propertyName) {
+  getTokenProperty(propertyName) {
     var decodedAccessToken = this.getDecodedAccessToken();
     var property = decodedAccessToken[propertyName];
     return property;
@@ -49,7 +61,7 @@ export class UserService {
 
   getDecodedAccessToken() {
     var decodedAccessToken = this.decodeToken(this.getAccessToken());
-    console.log(decodedAccessToken);
+    // console.log(decodedAccessToken);
     return decodedAccessToken;
   }
 
