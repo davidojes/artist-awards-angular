@@ -24,22 +24,34 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient, private userService: UserService) { }
 
   ngOnInit(): void {
+    // var userLoggedIn = this.userService.getUserLoggedIn();
   }
 
   
 
   login() {
     const credentials = JSON.stringify(this.loginForm.value);
-    this.http.post("https://localhost:44399/api/auth/login", credentials, {
+    var complete = async () => {
+    await this.http.post("https://localhost:44399/api/auth/login", credentials, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       }),
       withCredentials: true
-    })
-    .subscribe();
-    var userId = this.userService.getUserId();
-    console.log(userId);
-    this.userService.setUserLoggedIn();
+    }).toPromise();
+    this.router.navigate(["home"])
+    .then(() => {window.location.reload()});
+  }
+
+  complete();
+
+  
+  
+    // .subscribe();
+    
+    // var userId = this.userService.getUserId();
+    // console.log(userId);
+    // console.log(this.userService.getUserName())
+    // this.userService.setUserLoggedIn();
 
     // console.log(userId);
     // .subscribe(response => {
