@@ -14,6 +14,7 @@ export class UserService {
     var tokenExpired = this.isTokenExpired();
     if (tokenExpired) this.setUserLoggedIn(false);
     else this.setUserLoggedIn(true);
+    console.log("Token expired: " + tokenExpired);
     return this.userLoggedIn;
   }
 
@@ -39,28 +40,32 @@ export class UserService {
     var currentDate = Math.round(Date.now() / 1000)
     // console.log(`current date: ${currentDate}\n expiry date: ${expiryDate}`)
 
-    if(currentDate > expiryDate)  return true;
+    if (currentDate > expiryDate) return true;
     else return false;
   }
 
-   setUserLoggedIn(value = null) {
+  setUserLoggedIn(value = null) {
     if (value != null) this.userLoggedIn = value;
     else this.userLoggedIn = !this.userLoggedIn;
   }
 
   getTokenProperty(propertyName) {
     var decodedAccessToken = this.getDecodedAccessToken();
+    if (decodedAccessToken == null) return null;
     var property = decodedAccessToken[propertyName];
     return property;
   }
 
   getAccessToken() {
     var accessToken = this.getCookie("accessToken");
+    if (!accessToken) return null;
     return accessToken;
   }
 
   getDecodedAccessToken() {
-    var decodedAccessToken = this.decodeToken(this.getAccessToken());
+    var accessToken = this.getAccessToken();
+    if (accessToken == null) return null;
+    var decodedAccessToken = this.decodeToken(accessToken);
     // console.log(decodedAccessToken);
     return decodedAccessToken;
   }
@@ -68,14 +73,16 @@ export class UserService {
   getCookie(cookieName) {
     cookieName = cookieName + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
-    var cookieArray = decodedCookie.split(';');
-    for (var i = 0; i < cookieArray.length; i++) {
-      var cookie = cookieArray[i].trim();
-      if (cookie.indexOf(cookieName) == 0) {
-        return cookie.substring(cookieName.length, cookie.length);
+    if (decodedCookie) {
+      var cookieArray = decodedCookie.split(';');
+      for (var i = 0; i < cookieArray.length; i++) {
+        var cookie = cookieArray[i].trim();
+        if (cookie.indexOf(cookieName) == 0) {
+          return cookie.substring(cookieName.length, cookie.length);
+        }
       }
     }
-    return "Not found"
+    return null;
   }
 
   decodeToken(token) {
