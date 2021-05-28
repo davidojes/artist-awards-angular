@@ -10,6 +10,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PollComponent } from './poll/poll.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PollComponent } from './poll/poll.component';
     NavBarComponent,
     LoginComponent,
     RegisterComponent,
-    PollComponent
+    PollComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,8 @@ import { PollComponent } from './poll/poll.component';
     RouterModule.forRoot([
       {path: "login", component:LoginComponent},
       {path: "register", component:RegisterComponent},
-      {path: "poll/:pollId", component:PollComponent}
+      {path: "poll/:pollId", component:PollComponent},
+      {path: "home", component:HomeComponent}
     ])
   ],
   providers: [],
