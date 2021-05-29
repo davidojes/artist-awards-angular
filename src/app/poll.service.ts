@@ -20,7 +20,8 @@ export class PollService {
     var response = await this.httpClient.post<any>('https://localhost:44399/api/poll/vote', body, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
-      })
+      }),
+      withCredentials: true
     }).toPromise();
     return response;
   }
