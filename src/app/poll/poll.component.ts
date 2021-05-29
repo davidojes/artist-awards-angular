@@ -20,4 +20,11 @@ export class PollComponent implements OnInit {
     // console.log(this.poll);
   }
 
+  async vote(pollOption) {
+    // console.log(pollOption);
+    await this.pollService.vote(pollOption.id)
+    // .then(response => console.log(response))
+    .catch(error => console.log(error));
+  }
+
 }

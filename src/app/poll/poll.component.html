@@ -7,7 +7,7 @@
                     <p class="card-header-title is-centered has-text-weight-normal">{{pollOption.content}}</p>
                 </header>
                 <footer class="card-footer has-background-primary">
-                    <a href="#" class="card-footer-item has-text-white">Vote</a>
+                    <a class="card-footer-item has-text-white" (click)="vote(pollOption)">Vote</a>
                 </footer>
             </div>
             <br />
