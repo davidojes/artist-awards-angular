@@ -7,7 +7,8 @@
                     <p class="card-header-title is-centered has-text-weight-normal">{{pollOption.content}}</p>
                 </header>
                 <footer class="card-footer has-background-primary">
-                    <a class="card-footer-item has-text-white" (click)="vote(pollOption)">Vote</a>
+                    <span *ngIf="userVoted; else userNotVoted" class="card-footer-item has-text-white">Votes: {{pollOption.votes}}</span>
+                    <ng-template #userNotVoted><a class="card-footer-item has-text-white" (click)="vote(pollOption)">Vote</a></ng-template>
                 </footer>
             </div>
             <br />
