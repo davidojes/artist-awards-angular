@@ -30,7 +30,8 @@ import { HomeComponent } from './home/home.component';
       {path: "login", component:LoginComponent},
       {path: "register", component:RegisterComponent},
       {path: "poll/:pollId", component:PollComponent},
-      {path: "home", component:HomeComponent}
+      {path: "home", component:HomeComponent},
+      {path: "", component:HomeComponent}
     ])
   ],
   providers: [],

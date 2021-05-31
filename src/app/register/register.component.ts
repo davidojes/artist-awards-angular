@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from "@angular/router";
 import { NgForm } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-register',
@@ -20,9 +21,10 @@ export class RegisterComponent implements OnInit {
   invalidRegistration = false;
   errorMessage = "";
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient, private userService: UserService) { }
 
   ngOnInit(): void {
+    if (this.userService.getUserLoggedIn() == true) this.router.navigate(['home']);
   }
 
   
