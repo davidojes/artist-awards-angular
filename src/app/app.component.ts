@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'artist-awards-angular';
-  constructor(router: Router) {
-    router.navigate(['home']);
+  constructor() {
   }
 }
