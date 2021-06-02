@@ -44,7 +44,10 @@ export class PollComponent implements OnInit {
     // console.log(pollOption.votes);
     await this.pollService.vote(pollOption.id)
       // .then(response => console.log(response))
-      .catch(error => {console.log(error); this.errorMessage = 'Sorry, our vote could not be completed'});
+      .catch(error => {
+        console.log(error); 
+        // this.errorMessage = 'Sorry, your vote could not be completed';
+      });
     this.userVoted = true;
     this.poll = await this.pollService.getPoll(this.poll.id);
     this.successMessage = 'Your vote has been counted :)';
