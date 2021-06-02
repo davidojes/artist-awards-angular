@@ -12,6 +12,10 @@ export class PollComponent implements OnInit {
 
   poll;
   userVoted = false;
+  successMessage = '';
+  errorMessage = '';
+  logInPrompt = false;
+
 
   constructor(private route: ActivatedRoute, private pollService: PollService, private userService: UserService) { }
 
@@ -22,7 +26,7 @@ export class PollComponent implements OnInit {
     // console.log(this.poll);
     // console.log(this.poll.userVotes);
     var userVote = this.poll.userVotes.filter((uv) => {
-      if(uv.userId == this.userService.getUserId()) {
+      if (uv.userId == this.userService.getUserId()) {
         return uv;
       }
     });
@@ -32,12 +36,18 @@ export class PollComponent implements OnInit {
   }
 
   async vote(pollOption) {
+    if (this.userService.getUserLoggedIn() == false) {
+      this.logInPrompt = true;
+      setTimeout(() => { this.errorMessage = '' }, 3000);
+      return;
+    }
     // console.log(pollOption.votes);
     await this.pollService.vote(pollOption.id)
-    // .then(response => console.log(response))
-    .catch(error => console.log(error));
+      // .then(response => console.log(response))
+      .catch(error => {console.log(error); this.errorMessage = 'Sorry, our vote could not be completed'});
     this.userVoted = true;
     this.poll = await this.pollService.getPoll(this.poll.id);
+    this.successMessage = 'Your vote has been counted :)';
+    setTimeout(() => { this.successMessage = '' }, 3000);
   }
-
 }

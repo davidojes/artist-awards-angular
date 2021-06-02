@@ -1,5 +1,10 @@
 <div class="container" *ngIf="poll">
-    <h2 class="title has-text-centered mb-6">{{poll.title}} ({{poll.status.name}})</h2>
+    <h2 class="title has-text-centered mb-6">{{poll.title}} ({{poll.status.name | titlecase}})</h2>
+    <div *ngIf="successMessage" class="box"><p class="has-text-success-dark">Success Test: {{successMessage}}</p></div>
+    <div *ngIf="errorMessage" class="box"><p class="has-text-danger">Error Test: {{errorMessage}}</p></div>
+    <div *ngIf="logInPrompt" class="box">
+        <p class="has-text-danger">You must <a routerLink="/login" class="login-link">log in</a> to vote</p>
+    </div>
     <div class="columns is-multiline">
         <div class="column is-one-quarter" *ngFor="let pollOption of poll.pollOptions">
             <div class="card">
@@ -7,8 +12,10 @@
                     <p class="card-header-title is-centered has-text-weight-normal">{{pollOption.content}}</p>
                 </header>
                 <footer class="card-footer has-background-primary">
-                    <span *ngIf="userVoted; else userNotVoted" class="card-footer-item has-text-white">Votes: {{pollOption.votes}}</span>
-                    <ng-template #userNotVoted><a class="card-footer-item has-text-white" (click)="vote(pollOption)">Vote</a></ng-template>
+                    <span *ngIf="userVoted; else userNotVoted" class="card-footer-item has-text-white">Votes:
+                        {{pollOption.votes}}</span>
+                    <ng-template #userNotVoted><a class="card-footer-item has-text-white"
+                            (click)="vote(pollOption)">Vote</a></ng-template>
                 </footer>
             </div>
             <br />
