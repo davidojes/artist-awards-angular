@@ -19,6 +19,7 @@
       <div *ngIf="userLoggedIn; else userNotLoggedIn" id="userLoggedIn" class="navbar-item">
         <div class="buttons">
           <div class="navbar-item is-size-4 has-text-primary-dark">Logged in as {{userName}}</div>
+          <a (click)="logout()" class="button is-primary"> Logout </a>
           <!-- <a href="#" class="button is-light"> Logout </a> -->
         </div>
       </div>

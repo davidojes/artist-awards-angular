@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import jwt_decode from 'jwt-decode';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class UserService {
 
   userLoggedIn: boolean = false;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getUserLoggedIn() {
     var tokenExpired = this.isTokenExpired();
@@ -26,6 +27,16 @@ export class UserService {
   getUserName() {
     var userName = this.getTokenProperty("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name");
     return userName;
+  }
+
+  async logout() {
+      var response = await this.http.post<any>("https://localhost:44399/api/auth/logout", '', {
+        headers: new HttpHeaders({
+          "Content-Type": "application/json"
+        }),
+        withCredentials: true
+      }).toPromise();
+      return response;
   }
 
 
