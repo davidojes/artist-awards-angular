@@ -14,17 +14,13 @@ export class NavBarComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) { }
 
-  ngOnInit(): void {
-    this.userLoggedIn = this.userService.getUserLoggedIn();
+  async ngOnInit() {
+    this.userLoggedIn = await this.userService.getUserLoggedIn();
     if (this.userLoggedIn) this.userName = this.userService.getUserName();
   }
 
   async logout() {
-    await this.userService.logout()
-    .then(response => {console.log(response); this.router.navigate(['/login']);})
-    .catch(error => console.log(error));
-
-    
+    await this.userService.logout();
   }
 
 }

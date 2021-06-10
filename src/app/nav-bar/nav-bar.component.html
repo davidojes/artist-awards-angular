@@ -16,15 +16,15 @@
   <div id="navbar" class="navbar-menu">
     <div class="navbar-end">
 
-      <div *ngIf="userLoggedIn; else userNotLoggedIn" id="userLoggedIn" class="navbar-item">
+      <div *ngIf="userLoggedIn" id="userLoggedIn" class="navbar-item">
         <div class="buttons">
           <div class="navbar-item is-size-4 has-text-primary-dark">Logged in as {{userName}}</div>
           <a (click)="logout()" class="button is-primary"> Logout </a>
           <!-- <a href="#" class="button is-light"> Logout </a> -->
         </div>
       </div>
-      <ng-template #userNotLoggedIn>
-        <div class="navbar-item">
+      <!-- <ng-template #userNotLoggedIn> -->
+        <div *ngIf="userLoggedIn == false && userLoggedIn != null" class="navbar-item">
           <div class="buttons">
             <a routerLink="login" class="button is-light"> Login </a>
             <a routerLink="register" class="button is-primary">
@@ -32,7 +32,7 @@
             </a>
           </div>
         </div>
-      </ng-template>
+      <!-- </ng-template> -->
 
 
     </div>

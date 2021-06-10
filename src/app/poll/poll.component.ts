@@ -36,7 +36,7 @@ export class PollComponent implements OnInit {
   }
 
   async vote(pollOption) {
-    if (this.userService.getUserLoggedIn() == false) {
+    if (await this.userService.getUserLoggedIn() == false) {
       this.logInPrompt = true;
       setTimeout(() => { this.errorMessage = '' }, 3000);
       return;
