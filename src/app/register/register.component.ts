@@ -23,8 +23,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient, private userService: UserService) { }
 
-  ngOnInit(): void {
-    if (this.userService.getUserLoggedIn() == true) this.router.navigate(['home']);
+  async ngOnInit() {
+    if (await this.userService.getUserLoggedIn() == true) this.router.navigate(['home']);
   }
 
   

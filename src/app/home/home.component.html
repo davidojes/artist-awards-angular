@@ -1,1 +1,16 @@
-<h2>Homepage</h2>
+<!-- <h2>Homepage</h2> -->
+
+<form class="search-container container">
+    <div class="field has-addons">
+        <div class="control">
+            <input id="search" name="pollId" [(ngModel)]="pollId" class="input" type="text" placeholder="Enter your poll code">
+        </div>
+        <div class="control">
+            <a class="button is-info" (click)="checkForPoll()">
+                Search
+            </a>
+        </div>
+        
+    </div>
+    <p *ngIf="errorMessage">{{errorMessage}}</p>
+</form>

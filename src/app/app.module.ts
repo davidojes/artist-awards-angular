@@ -3,6 +3,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from "@angular/router";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import {NgForm} from '@angular/forms';
+
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +31,7 @@ import {AuthGuardService} from './auth-guard.service';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     RouterModule.forRoot([
       {path: "login", component:LoginComponent, canActivate: [AuthGuardService]},
       {path: "register", component:RegisterComponent, canActivate: [AuthGuardService]},

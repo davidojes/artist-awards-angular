@@ -15,6 +15,14 @@ export class PollService {
     return this.poll;
   }
 
+  async checkForPoll(pollId) {
+    var result = false;
+    await this.httpClient.get<any>('https://localhost:44399/api/poll/checkforpoll/' + pollId).toPromise()
+    .then(() => result = true)
+    .catch(() => result = false);
+    return result;
+  }
+
   async vote(pollOptionId) {
     var body = JSON.stringify({ "userId": this.userService.getUserId(), "pollOptionId": pollOptionId });
     var response = await this.httpClient.post<any>('https://localhost:44399/api/poll/vote', body, {
