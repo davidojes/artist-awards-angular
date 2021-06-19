@@ -16,15 +16,15 @@ export class AuthGuardService implements CanActivate {
   }
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-    var url = state.url.trim();
+    var url  = state.url.trim();
     var userLoggedIn = await this.userService.getUserLoggedIn()
-    if (userLoggedIn == true && url == '/login') {
+    if (userLoggedIn == true && (url == '/login' || url == '/register')) {
       console.log(url)
       this.router.navigate(['home']);
       return false;
     }
 
-    if (userLoggedIn == false && url != '/login') {
+    if (userLoggedIn == false && (url != '/login' && url != '/register')) {
         this.router.navigate(['login']);
         return false;
     }
