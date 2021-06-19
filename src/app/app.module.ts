@@ -15,7 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PollComponent } from './poll/poll.component';
 import { HomeComponent } from './home/home.component';
-import {AuthGuardService} from './auth-guard.service';
+import {AuthGuardService} from './services/auth-guard.service';
 
 @NgModule({
   declarations: [

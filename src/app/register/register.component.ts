@@ -3,7 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from "@angular/router";
 import { NgForm } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UserService } from '../user.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-register',

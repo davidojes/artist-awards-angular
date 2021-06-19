@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../user.service';
-import {PollService } from '../poll.service';
+import { UserService } from '../services/user.service';
+import {PollService } from '../services/poll.service';
 import {Input, Output, EventEmitter } from '@angular/core';
 
 
