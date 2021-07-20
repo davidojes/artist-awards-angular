@@ -35,7 +35,7 @@ import {AuthGuardService} from './services/auth-guard.service';
     RouterModule.forRoot([
       {path: "login", component:LoginComponent, canActivate: [AuthGuardService]},
       {path: "register", component:RegisterComponent, canActivate: [AuthGuardService]},
-      {path: "poll/:pollId", component:PollComponent, canActivate: [AuthGuardService]},
+      {path: "poll/:pollId", component:PollComponent},
       {path: "home", component:HomeComponent, canActivate: [AuthGuardService]},
       {path: "", component:HomeComponent, canActivate: [AuthGuardService]}
     ])

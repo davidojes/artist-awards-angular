@@ -25,12 +25,18 @@ export class PollComponent implements OnInit {
     this.poll = await this.pollService.getPoll(pollId);
     // console.log(this.poll);
     // console.log(this.poll.userVotes);
-    var userVote = this.poll.userVotes.filter((uv) => {
-      if (uv.userId == this.userService.getUserId()) {
-        return uv;
-      }
-    });
-    if (userVote.length > 0) this.userVoted = true;
+    var userId = this.userService.getUserId();
+    if (userId == null) this.userVoted = null;
+    else {
+      var userVote = this.poll.userVotes.filter((uv) => {
+        if (uv.userId == userId) {
+          return uv;
+        }
+      });
+
+      if (userVote.length > 0) this.userVoted = true;
+    }
+    console.log(this.userVoted)
     // console.log("User voted: " + this.userVoted);
     // console.log(userVote);
   }
@@ -45,7 +51,7 @@ export class PollComponent implements OnInit {
     await this.pollService.vote(pollOption.id)
       // .then(response => console.log(response))
       .catch(error => {
-        console.log(error); 
+        console.log(error);
         // this.errorMessage = 'Sorry, your vote could not be completed';
       });
     this.userVoted = true;
