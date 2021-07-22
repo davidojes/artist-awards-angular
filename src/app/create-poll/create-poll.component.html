@@ -1,0 +1,24 @@
+<h2 class="title has-text-centered mb-6">Create a Poll</h2>
+<div class="container">
+    <div class="card">
+        <header class="card-header">
+            <p class="card-header-title is-centered has-text-weight-normal"><input type="text" id="option-input" [(ngModel)]="createOptionInput" /></p>
+        </header>
+        <footer class="card-footer has-background-primary"><a class="card-footer-item has-text-white" (click)="createOption()">Add Option</a>
+        </footer>
+    </div>
+</div>
+<br>
+<div #optionscontainer id="options-container" class="columns is-multiline">
+    <!-- <div class="column is-one-quarter">
+        <div class="card">
+            <header class="card-header">
+                <p class="card-header-title is-centered has-text-weight-normal"><input /></p>
+            </header>
+            <footer class="card-footer has-background-danger"><a class="card-footer-item has-text-white">Remove</a>
+            </footer>
+        </div>
+    </div> -->
+    <br />
+
+</div>

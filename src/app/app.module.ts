@@ -16,6 +16,7 @@ import { RegisterComponent } from './register/register.component';
 import { PollComponent } from './poll/poll.component';
 import { HomeComponent } from './home/home.component';
 import {AuthGuardService} from './services/auth-guard.service';
+import { CreatePollComponent } from './create-poll/create-poll.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {AuthGuardService} from './services/auth-guard.service';
     LoginComponent,
     RegisterComponent,
     PollComponent,
-    HomeComponent
+    HomeComponent,
+    CreatePollComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,9 @@ import {AuthGuardService} from './services/auth-guard.service';
       {path: "register", component:RegisterComponent, canActivate: [AuthGuardService]},
       {path: "poll/:pollId", component:PollComponent},
       {path: "home", component:HomeComponent, canActivate: [AuthGuardService]},
-      {path: "", component:HomeComponent, canActivate: [AuthGuardService]}
+      {path: "home", component:HomeComponent, canActivate: [AuthGuardService]},
+      {path: "", component:HomeComponent, canActivate: [AuthGuardService]},
+      {path: "createpoll", component:CreatePollComponent}
     ])
   ],
   providers: [],
