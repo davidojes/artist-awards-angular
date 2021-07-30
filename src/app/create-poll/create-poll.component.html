@@ -1,24 +1,36 @@
 <h2 class="title has-text-centered mb-6">Create a Poll</h2>
+<div *ngIf="errorMessage" class="box"><p class="has-text-danger">{{errorMessage}}</p></div>
 <div class="container">
+    <input type="text" id="pollName" class="input" placeholder="Enter poll name">
+    <br>
+    <br>
+    <a class="button has-background-primary has-text-white" (click)="createPoll()">Create Poll</a>
+</div>
+<br><br>
+<!-- <div class="container">
     <div class="card">
         <header class="card-header">
-            <p class="card-header-title is-centered has-text-weight-normal"><input type="text" id="option-input" [(ngModel)]="createOptionInput" /></p>
+            <p class="card-header-title is-centered has-text-weight-normal"><input type="text" id="option-input"
+                    [(ngModel)]="createOptionInput" /></p>
         </header>
-        <footer class="card-footer has-background-primary"><a class="card-footer-item has-text-white" (click)="createOption()">Add Option</a>
+        <footer class="card-footer has-background-primary"><a class="card-footer-item has-text-white"
+                (click)="createOption()">Add Option</a>
         </footer>
     </div>
 </div>
-<br>
+<br> -->
 <div #optionscontainer id="optionsContainer" class="columns is-multiline">
-    <!-- <div class="column is-one-quarter">
+    <div class="column is-one-quarter">
         <div class="card">
             <header class="card-header">
-                <p class="card-header-title is-centered has-text-weight-normal"><input /></p>
+                <p class="card-header-title is-centered has-text-weight-normal"><input type="text" id="createOptionInput"
+                        class="input" placeholder="Enter option text" [(ngModel)]="createOptionInput" /></p>
             </header>
-            <footer class="card-footer has-background-danger"><a class="card-footer-item has-text-white">Remove</a>
+            <footer class="card-footer has-background-primary"><a class="card-footer-item has-text-white"
+                    (click)="createOption()">Add Option</a>
             </footer>
         </div>
-    </div> -->
+    </div>
     <br />
 
 </div>

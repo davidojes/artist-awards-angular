@@ -41,7 +41,7 @@ import { CreatePollComponent } from './create-poll/create-poll.component';
       {path: "home", component:HomeComponent, canActivate: [AuthGuardService]},
       {path: "home", component:HomeComponent, canActivate: [AuthGuardService]},
       {path: "", component:HomeComponent, canActivate: [AuthGuardService]},
-      {path: "createpoll", component:CreatePollComponent}
+      {path: "createpoll", component:CreatePollComponent, canActivate: [AuthGuardService]}
     ])
   ],
   providers: [],

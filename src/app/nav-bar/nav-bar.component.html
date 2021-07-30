@@ -13,25 +13,32 @@
     </a>
   </div>
 
-  <div id="navbar" class="navbar-menu">
-    <div class="navbar-end">
+  <div *ngIf="userLoggedIn" id="navbar" class="navbar-menu">
+    <div class="navbar-start">
+      <a routerLink="createpoll" class="navbar-item is-size-4 has-text-primary-dark">Create a Poll</a>
+    </div>
 
-      <div *ngIf="userLoggedIn" id="userLoggedIn" class="navbar-item">
+    <div class="navbar-end">
+      <div id="userLoggedIn" class="navbar-item">
         <div class="buttons">
           <div class="navbar-item is-size-4 has-text-primary-dark">Logged in as {{userName}}</div>
           <a (click)="logout()" class="button is-primary"> Logout </a>
           <!-- <a href="#" class="button is-light"> Logout </a> -->
         </div>
       </div>
-      <!-- <ng-template #userNotLoggedIn> -->
-        <div *ngIf="userLoggedIn == false && userLoggedIn != null" class="navbar-item">
-          <div class="buttons">
-            <a routerLink="login" class="button is-light"> Login </a>
-            <a routerLink="register" class="button is-primary">
-              <strong>Sign Up</strong>
-            </a>
-          </div>
+    </div>
+  </div>
+  <!-- <ng-template #userNotLoggedIn> -->
+  <div *ngIf="userLoggedIn == false && userLoggedIn != null" id="navbar" class="navbar-menu">
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a routerLink="login" class="button is-light"> Login </a>
+          <a routerLink="register" class="button is-primary">
+            <strong>Sign Up</strong>
+          </a>
         </div>
+      </div>
       <!-- </ng-template> -->
 
 

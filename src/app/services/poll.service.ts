@@ -15,6 +15,16 @@ export class PollService {
     return this.poll;
   }
 
+  async createPoll(requestBody) {
+    var response = await this.httpClient.post<any>('https://localhost:44399/api/poll/createpoll', requestBody, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      }),
+      withCredentials: true
+    }).toPromise();
+    return response;
+  }
+
   async checkForPoll(pollId) {
     var result = false;
     await this.httpClient.get<any>('https://localhost:44399/api/poll/checkforpoll/' + pollId).toPromise()
