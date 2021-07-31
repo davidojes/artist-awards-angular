@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserService } from './user.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,16 +9,17 @@ import { UserService } from './user.service';
 export class PollService {
   poll;
   popularPolls;
+  apiUrl = environment.API_URL;
 
   constructor(private httpClient: HttpClient, private userService: UserService) { }
 
   async getPoll(id: string) {
-    this.poll = await this.httpClient.get<any>('https://localhost:44399/api/poll/' + id).toPromise();
+    this.poll = await this.httpClient.get<any>(`${this.apiUrl}/api/poll/` + id).toPromise();
     return this.poll;
   }
 
   async createPoll(requestBody) {
-    var response = await this.httpClient.post<any>('https://localhost:44399/api/poll/createpoll', requestBody, {
+    var response = await this.httpClient.post<any>(`${this.apiUrl}/api/poll/createpoll`, requestBody, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       }),
@@ -28,7 +30,7 @@ export class PollService {
 
   async checkForPoll(pollId) {
     var result = false;
-    await this.httpClient.get<any>('https://localhost:44399/api/poll/checkforpoll/' + pollId).toPromise()
+    await this.httpClient.get<any>(`${this.apiUrl}/api/poll/checkforpoll/` + pollId).toPromise()
       .then(() => result = true)
       .catch(() => result = false);
     return result;
@@ -37,7 +39,7 @@ export class PollService {
   async getPopularPolls() {
     // if (this.popularPolls.length === 0) {
     //   console.log("empty");
-      this.popularPolls = await this.httpClient.get<any>('https://localhost:44399/api/poll/popularpolls')
+      this.popularPolls = await this.httpClient.get<any>(`${this.apiUrl}/api/poll/popularpolls`)
         .toPromise();
         // .then(success => {this.popularPolls = success });
     // }
@@ -47,7 +49,7 @@ export class PollService {
 
   async vote(pollOptionId) {
     var body = JSON.stringify({ "userId": this.userService.getUserId(), "pollOptionId": pollOptionId });
-    var response = await this.httpClient.post<any>('https://localhost:44399/api/poll/vote', body, {
+    var response = await this.httpClient.post<any>(`${this.apiUrl}/api/poll/vote`, body, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       }),

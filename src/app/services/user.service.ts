@@ -3,6 +3,7 @@ import jwt_decode from 'jwt-decode';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { error } from '@angular/compiler/src/util';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import { error } from '@angular/compiler/src/util';
 export class UserService {
 
   userLoggedIn
+  apiUrl = environment.API_URL;
 
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -45,7 +47,7 @@ export class UserService {
 
   async login(credentials) {
     var response;
-    await this.http.post("https://localhost:44399/api/auth/login", credentials, {
+    await this.http.post(`${this.apiUrl}/api/auth/login`, credentials, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       }),
@@ -62,7 +64,7 @@ export class UserService {
 
   async register(credentials) {
     var response;
-    await this.http.post("https://localhost:44399/api/auth/register", credentials, {
+    await this.http.post(`${this.apiUrl}/api/auth/register`, credentials, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       }),
@@ -78,7 +80,7 @@ export class UserService {
   }
 
   async logout() {
-    await this.http.post<any>("https://localhost:44399/api/auth/logout", '', {
+    await this.http.post<any>(`${this.apiUrl}/api/auth/logout`, '', {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       }),
@@ -92,7 +94,7 @@ export class UserService {
 
   async refreshToken() {
     var result = false;
-    await this.http.post<any>("https://localhost:44399/api/auth/refreshtoken", '', {
+    await this.http.post<any>(`${this.apiUrl}/api/auth/refreshtoken`, '', {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       }),
