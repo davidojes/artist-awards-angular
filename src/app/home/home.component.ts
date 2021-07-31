@@ -14,10 +14,13 @@ export class HomeComponent implements OnInit {
 
   constructor(private router: Router, private userService: UserService, private pollService: PollService) { }
 
-  ngOnInit(): void {
+  popularPolls = [];
+
+  async ngOnInit() {
+    this.popularPolls = await this.pollService.getPopularPolls();
   }
 
-  @Input() pollId = 'f6505a03-2b49-4ad7-b8d1-b2c8fd392a2f'
+  @Input() pollId = ''
   errorMessage = ''
   // @Output() pollIdChange = new EventEmitter<string>();
 
@@ -28,5 +31,9 @@ export class HomeComponent implements OnInit {
 
     if(pollExists) {this.router.navigate(['/poll', this.pollId]);}
     else this.errorMessage = 'Sorry, that poll does not exist'; 
+  }
+
+  openPoll(poll) {
+    this.router.navigate(['/poll', poll.id]);
   }
 }

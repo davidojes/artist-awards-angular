@@ -3,14 +3,33 @@
 <form class="search-container container">
     <div class="field has-addons">
         <div class="control">
-            <input id="search" name="pollId" [(ngModel)]="pollId" class="input" type="text" placeholder="Enter your poll code">
+            <input id="search" name="pollId" [(ngModel)]="pollId" class="input" type="text"
+                placeholder="Enter your poll code">
         </div>
         <div class="control">
             <a class="button is-primary" (click)="checkForPoll()">
                 Search
             </a>
         </div>
-        
+
     </div>
-    <p *ngIf="errorMessage">{{errorMessage}}</p>
+    <p *ngIf="errorMessage">{{errorMessage}}</p> 
 </form>
+<br>
+<br>
+
+<h2 class="title has-text-centered mb-6">Popular Polls</h2>
+
+<div class="columns is-multiline">
+    <div class="column is-one-quarter" *ngFor="let poll of popularPolls">
+        <div class="card">
+            <header class="card-header">
+                <p class="card-header-title is-centered has-text-weight-normal">{{poll.title}}</p>
+            </header>
+            <footer class="card-footer has-background-primary">
+                <a class="card-footer-item has-text-white" (click)="openPoll(poll)">Go to Poll</a>
+            </footer>
+        </div>
+        <br />
+    </div>
+</div>

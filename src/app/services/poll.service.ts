@@ -7,6 +7,7 @@ import { UserService } from './user.service';
 })
 export class PollService {
   poll;
+  popularPolls;
 
   constructor(private httpClient: HttpClient, private userService: UserService) { }
 
@@ -28,9 +29,20 @@ export class PollService {
   async checkForPoll(pollId) {
     var result = false;
     await this.httpClient.get<any>('https://localhost:44399/api/poll/checkforpoll/' + pollId).toPromise()
-    .then(() => result = true)
-    .catch(() => result = false);
+      .then(() => result = true)
+      .catch(() => result = false);
     return result;
+  }
+
+  async getPopularPolls() {
+    // if (this.popularPolls.length === 0) {
+    //   console.log("empty");
+      this.popularPolls = await this.httpClient.get<any>('https://localhost:44399/api/poll/popularpolls')
+        .toPromise();
+        // .then(success => {this.popularPolls = success });
+    // }
+    // console.log(this.popularPolls);
+    return this.popularPolls;
   }
 
   async vote(pollOptionId) {
