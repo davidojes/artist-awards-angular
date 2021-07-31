@@ -1,7 +1,7 @@
 <div class="container">
     <h2 class="title is-4">Log in</h2>
     <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <p class="has-text-danger" *ngIf="invalidLogin">{{errorMessage}}</p>
+        <p class="has-text-danger" *ngIf="errorMessage">{{errorMessage}}</p>
         <br>
         <div class="columns">
             <!-- column 1 -->

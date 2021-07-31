@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import jwt_decode from 'jwt-decode';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
+import { error } from '@angular/compiler/src/util';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import {Router} from '@angular/router';
 export class UserService {
 
   userLoggedIn
-  
+
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -43,30 +44,38 @@ export class UserService {
   }
 
   async login(credentials) {
-      await this.http.post("https://localhost:44399/api/auth/login", credentials, {
-        headers: new HttpHeaders({
-          "Content-Type": "application/json"
-        }),
-        withCredentials: true
-      }).toPromise()
-        .then(() => {
-          this.setUserLoggedIn(true);
-        });
-        // .catch(error => console.log(error))
+    var response;
+    await this.http.post("https://localhost:44399/api/auth/login", credentials, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      }),
+      withCredentials: true
+    }).toPromise()
+      .then(success => {
+        this.setUserLoggedIn(true);
+        response = { "code": 0, "messageObject": success }
+      })
+      .catch(error => { response = { "code": 1, "messageObject": error.error } });
+    return response;
+    // .catch(error => console.log(error))
   }
 
   async register(credentials) {
+    var response;
     await this.http.post("https://localhost:44399/api/auth/register", credentials, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       }),
       withCredentials: true
     }).toPromise()
-      .then(() => {
+      .then(success => {
         this.setUserLoggedIn(true);
-      });
-      // .catch(error => console.log(error))
-}
+        response = { "code": 0, "messageObject": success }
+      })
+      .catch(error => { response = { "code": 1, "messageObject": error.error } });
+    return response;
+    // .catch(error => console.log(error))
+  }
 
   async logout() {
     await this.http.post<any>("https://localhost:44399/api/auth/logout", '', {
@@ -75,10 +84,10 @@ export class UserService {
       }),
       withCredentials: true
     }).toPromise()
-    .then(() => {
-      this.setUserLoggedIn(false); 
-      this.router.navigate(['/login']).then(() => {window.location.reload()});
-    });
+      .then(() => {
+        this.setUserLoggedIn(false);
+        this.router.navigate(['/login']).then(() => { window.location.reload() });
+      });
   }
 
   async refreshToken() {

@@ -31,8 +31,10 @@ export class RegisterComponent implements OnInit {
 
   async register() {
     const credentials = JSON.stringify(this.registerForm.value);
-    await this.userService.register(credentials);
-    this.router.navigate(["home"]).then(() => { window.location.reload() });
+    var response = await this.userService.register(credentials);
+    console.log(response.code + " " + response.messageObject.message); 
+    if (response.code == 0) this.router.navigate(["home"]).then(() => { window.location.reload() });
+    this.errorMessage = response.messageObject.message;
 
 
     // this.http.post("https://localhost:44399/api/auth/register", credentials, {

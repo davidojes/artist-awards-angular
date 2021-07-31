@@ -1,7 +1,7 @@
 <div class="container">
     <h2 class="title is-4">Get voting access</h2>
     <form [formGroup]="registerForm" (ngSubmit)="register()">
-        <p class="has-text-danger" *ngIf="invalidRegistration">{{errorMessage}}</p>
+        <p class="has-text-danger" *ngIf="errorMessage">{{errorMessage}}</p>
         <br>
         <div class="columns">
             <!-- column 1 -->

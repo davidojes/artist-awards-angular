@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   });
 
   invalidLogin = false;
-  errorMessage = "";
+  errorMessage = '';
 
   constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient, private userService: UserService) { }
 
@@ -32,8 +32,12 @@ export class LoginComponent implements OnInit {
 
   async login() {
     const credentials = JSON.stringify(this.loginForm.value);
-    await this.userService.login(credentials);
-    this.router.navigate(["home"]).then(() => { window.location.reload() });
+    var response = await this.userService.login(credentials);
+    console.log(response.code + " " + response.messageObject.message); 
+    if (response.code == 0) this.router.navigate(["home"]).then(() => { window.location.reload() });
+    this.errorMessage = response.messageObject.message;
+    // this.invalidLogin = true;
+    // 
   }
 
 }
