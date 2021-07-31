@@ -12,7 +12,7 @@ export class CreatePollComponent implements OnInit {
 
   constructor(private pollService: PollService, private router: Router, private userService: UserService) { }
 
-  createOptionInput
+  createOptionInput = '';
   @ViewChild('optionscontainer') container: ElementRef;
 
   ngOnInit(): void {
@@ -28,7 +28,7 @@ export class CreatePollComponent implements OnInit {
       setTimeout(() => { this.errorMessage = '' }, 3000);
       return;
     }
-    this.container.nativeElement.insertAdjacentHTML('beforeend', `<div class="column is-one-quarter"><div class="card"><header class="card-header"><p class="card-header-title is-centered has-text-weight-normal"><input class="created-card-input input" value=${this.createOptionInput} /></p></header></div></div>`)
+    this.container.nativeElement.insertAdjacentHTML('beforeend', `<div class="column is-one-quarter"><div class="card"><header class="card-header"><p class="card-header-title is-centered has-text-weight-normal"><input class="created-card-input input" value="${this.createOptionInput}" /></p></header></div></div>`)
     var cards = Array.from(document.getElementsByClassName('card') as HTMLCollectionOf<HTMLElement>)
     var card = cards[cards.length - 1];
 
