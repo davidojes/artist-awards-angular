@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
     const credentials = JSON.stringify(this.registerForm.value);
     var response = await this.userService.register(credentials);
     console.log(response.code + " " + response.messageObject.message); 
-    if (response.code == 0) this.router.navigate(["home"]).then(() => { window.location.reload() });
+    if (response.code == 0) this.router.navigate(['']).then(() => { window.location.reload() });
     this.errorMessage = response.messageObject.message;
 
 

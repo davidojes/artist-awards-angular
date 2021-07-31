@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     const credentials = JSON.stringify(this.loginForm.value);
     var response = await this.userService.login(credentials);
     console.log(response.code + " " + response.messageObject.message); 
-    if (response.code == 0) this.router.navigate(["home"]).then(() => { window.location.reload() });
+    if (response.code == 0) this.router.navigate(['']).then(() => { window.location.reload() });
     this.errorMessage = response.messageObject.message;
     // this.invalidLogin = true;
     // 

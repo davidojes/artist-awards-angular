@@ -20,7 +20,7 @@ export class AuthGuardService implements CanActivate {
     var userLoggedIn = await this.userService.getUserLoggedIn()
     if (userLoggedIn == true && (url == '/login' || url == '/register')) {
       console.log(url)
-      this.router.navigate(['home']);
+      this.router.navigate(['']);
       return false;
     }
 

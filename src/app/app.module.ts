@@ -35,12 +35,12 @@ import { CreatePollComponent } from './create-poll/create-poll.component';
     ReactiveFormsModule,
     FormsModule,
     RouterModule.forRoot([
+      {path: "", component:HomeComponent},
+      // {path: "home", component:HomeComponent},
       {path: "login", component:LoginComponent, canActivate: [AuthGuardService]},
       {path: "register", component:RegisterComponent, canActivate: [AuthGuardService]},
       {path: "poll/:pollId", component:PollComponent},
-      {path: "home", component:HomeComponent, canActivate: [AuthGuardService]},
-      {path: "home", component:HomeComponent, canActivate: [AuthGuardService]},
-      {path: "", component:HomeComponent, canActivate: [AuthGuardService]},
+      // {path: "home", component:HomeComponent, canActivate: [AuthGuardService]},
       {path: "createpoll", component:CreatePollComponent, canActivate: [AuthGuardService]}
     ])
   ],
