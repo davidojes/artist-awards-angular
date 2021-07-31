@@ -29,26 +29,30 @@ export class RegisterComponent implements OnInit {
 
   
 
-  register() {
+  async register() {
     const credentials = JSON.stringify(this.registerForm.value);
-    this.http.post("https://localhost:44399/api/auth/register", credentials, {
-      headers: new HttpHeaders({
-        "Content-Type": "application/json"
-      })
-    })
-    .subscribe(
-    //   response => {
-    //   const token = (<any>response).token;
-    //   localStorage.setItem("authToken", token);
-    //   this.invalidRegistration = false;
-    //   console.log(localStorage.getItem("authToken"));
-    //   // this.router.navigate(["/"]);
-    // },
-    response => {},
-    err => {
-      this.invalidRegistration = true;
-      this.errorMessage = err.error.message;
-      // console.log(err.error.message);
-    });
+    await this.userService.register(credentials);
+    this.router.navigate(["home"]).then(() => { window.location.reload() });
+
+
+    // this.http.post("https://localhost:44399/api/auth/register", credentials, {
+    //   headers: new HttpHeaders({
+    //     "Content-Type": "application/json"
+    //   })
+    // })
+    // .subscribe(
+    // //   response => {
+    // //   const token = (<any>response).token;
+    // //   localStorage.setItem("authToken", token);
+    // //   this.invalidRegistration = false;
+    // //   console.log(localStorage.getItem("authToken"));
+    // //   // this.router.navigate(["/"]);
+    // // },
+    // response => {},
+    // err => {
+    //   this.invalidRegistration = true;
+    //   this.errorMessage = err.error.message;
+    //   // console.log(err.error.message);
+    // });
   }
 }

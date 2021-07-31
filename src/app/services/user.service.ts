@@ -55,6 +55,19 @@ export class UserService {
         // .catch(error => console.log(error))
   }
 
+  async register(credentials) {
+    await this.http.post("https://localhost:44399/api/auth/register", credentials, {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json"
+      }),
+      withCredentials: true
+    }).toPromise()
+      .then(() => {
+        this.setUserLoggedIn(true);
+      });
+      // .catch(error => console.log(error))
+}
+
   async logout() {
     await this.http.post<any>("https://localhost:44399/api/auth/logout", '', {
       headers: new HttpHeaders({
