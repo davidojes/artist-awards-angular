@@ -1,4 +1,4 @@
-# Artist Awards Frontend
+# Pollarama Awards Frontend
 
-This project is an Angular frontend for the [Artist Awards Project .NET Backend](https://github.com/davidojes/artist-awards-dotnet)
+This project is an Angular frontend for the [Pollarama Awards Project .NET Backend](https://github.com/davidojes/pollarama-dotnet)
 

@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'artist-awards-angular'`, () => {
+  it(`should have as title 'pollarama-angular'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('artist-awards-angular');
+    expect(app.title).toEqual('pollarama-angular');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('artist-awards-angular app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('pollarama-angular app is running!');
   });
 });
